@@ -1,0 +1,32 @@
+* jvm学习
+** TODO 1. JVM与Java语言规范
+*** TODO JVM规范
+*** TODO Java语言规范 
+** TODO 2. 虚拟机概论
+*** TODO Virtual Machines: Versatile Platforms for Systems and Processes
+** TODO 3. JVM使用经验
+*** TODO Oracle JRockit: The Definitive Guide
+*** TODO Java Performance
+*** TODO 深入理解Java虚拟机
+** TODO 4. 虚拟机入门实现
+*** TODO Language Implementation Patterns
+*** TODO 自制编程语言
+*** TODO 深入嵌入式Java虚拟机
+*** TODO HotSpot实战
+*** TODO The School of Niklaus Wirth
+** TODO 5. C++基础
+*** TODO 深度探索C++对象模型 
+*** TODO C++ 程序设计语言
+** TODO 6. GC与编译原理
+*** TODO The Garbage Collection Handbook
+*** TODO 垃圾回收原理与实现
+*** TODO 龙书
+*** TODO 虎书
+*** TODO 鲸书
+*** TODO EAC：Engineering a Compilers
+*** TODO Optimizing Compilers for Modern Architectures
+** TODO 7. 计算机体系结构
+*** TODO 计算机组成及汇编语言原理
+*** TODO 深入理解计算机系统
+** TODO 8. 进阶阅读
+*** TODO 
