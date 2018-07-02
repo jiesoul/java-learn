@@ -7,14 +7,24 @@ public class RegularExpressionMatching {
         if (sl == 0) {
             if (pl == 0) {
                 return true;
-            } else {
-                if (pl > 1 && p.charAt(1) == '*') {
-                    return isMatch(s, p.substring(2));
-                } else {
-                    return false;
-                }
-
             }
+            if (p.charAt(pl - 1) == '*') {
+                return isMatch(s, p.substring(0, pl-2));
+            }
+            return false;
+        } else if (sl == 1) {
+            if (pl == 0) {
+                return false;
+            }
+            int pi = pl - 1;
+            char pc = p.charAt(pi);
+            if (pl > 1 && pc == '*') {
+                pi--;
+            }
+
+
+
+            return false;
         } else {
             if (pl == 0) {
                 return false;
