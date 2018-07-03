@@ -1,5 +1,8 @@
 package algo4;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+
 public class Example {
 
     public static void sort(Comparable[] a) {
@@ -32,4 +35,7 @@ public class Example {
         return true;
     }
 
+    public static void main(String[] args) {
+        String[] a = StdIn.readStrings();
+    }
 }
