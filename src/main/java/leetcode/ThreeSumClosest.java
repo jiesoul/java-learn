@@ -13,28 +13,31 @@ public class ThreeSumClosest {
 
         int result = nums[0] + nums[1] + nums[2];
         for (int i = 0; i < nums.length-2; i++) {
-            int twoResult = twoSumClosest(nums, target - nums[i], i+1);
-            if (Math.abs(target - twoResult - nums[i]) < Math.abs(target - result)) {
-                result = twoResult + nums[i];
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+            int twoResult = twoSumClosest(nums, target, nums[i], i+1);
+            if (Math.abs(twoResult - target) < Math.abs(result - target)) {
+                result = twoResult;
             }
         }
         return result;
     }
 
-    private int twoSumClosest(int[] nums, int target, int index) {
+    private int twoSumClosest(int[] nums, int target, int n, int index) {
         int l = index, r = nums.length - 1;
-        int result = 0;
+        int result = nums[l] + nums[r] + n;
         while (l < r) {
-            int temp = target - (nums[l] + nums[r]);
-            if (Math.abs(temp) < Math.abs(target - result)) {
+            int temp = (nums[l] + nums[r] + n);
+            if (Math.abs(temp-target) < Math.abs(result - target)) {
                 result = temp;
             }
-            if (temp == 0) {
+            if (temp - target == 0) {
                 break;
-            } else if (temp > 0) {
-                l++;
-            } else {
+            } else if (temp - target > 0) {
                 r--;
+            } else {
+                l++;
             }
         }
         return result;
@@ -45,6 +48,13 @@ public class ThreeSumClosest {
         int[] a = new int[]{-1, 2, 1, -4};
         int target = 1;
         System.out.println(tsc.threeSumClosest(a, target));
+
+        int[] b = new int[]{0,2,1,-3};
+        System.out.println(tsc.threeSumClosest(b, target));
+
+        int[] c = new int[]{1,1,-1,-1,3};
+        target = 3;
+        System.out.println(tsc.threeSumClosest(c, target));
     }
 
 }
