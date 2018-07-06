@@ -15,19 +15,8 @@ public class GenerateParentheses {
             return list;
         } else {
             List<String> temp = generateParenthesis(n-1);
-            for (String str : temp) {
-                String s1 = str + "()";
-                if (!list.contains(s1)) {
-                    list.add(s1);
-                }
-                String s2 = "()" + str;
-                if (!list.contains(s2)) {
-                    list.add(s2);
-                }
-                String s3 = "(" + str + ")";
-                if (!list.contains(s3)) {
-                    list.add(s3);
-                }
+            for (String s : temp) {
+
             }
             return list;
         }
