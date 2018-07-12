@@ -1,5 +1,7 @@
 package algs4;
 
+import edu.princeton.cs.algs4.Queue;
+
 public class BST<Key extends Comparable<Key>, Value> {
 
     private Node root;
@@ -61,6 +63,16 @@ public class BST<Key extends Comparable<Key>, Value> {
         return min(x.left);
     }
 
+    public Key max() {
+        return max(root).key;
+    }
+
+    public Node max(Node x) {
+        if (x.right == null) return x;
+        return max(x.right);
+    }
+
+
     public Key floor(Key key) {
         Node x = floor(root, key);
         if (x == null) return null;
@@ -112,6 +124,17 @@ public class BST<Key extends Comparable<Key>, Value> {
         return x;
     }
 
+    public void deleteMax() {
+        root = deleteMax(root);
+    }
+
+    private Node deleteMax(Node x) {
+        if (x.right == null) return x.left;
+        x.right = deleteMin(x.right);
+        x.N = size(x.right) + size(x.left) + 1;
+        return x;
+    }
+
     public void delete(Key key) {
         root = delete(root, key);
     }
@@ -131,5 +154,24 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
         x.N = size(x.left) + size(x.right) + 1;
         return x;
+    }
+
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> queue = new Queue<>();
+        keys(root, queue, lo, hi);
+        return queue;
+    }
+
+    private void keys(Node x, Queue<Key> queue, Key lo, Key hi) {
+        if (x == null) return;
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);
+        if (cmplo < 0) keys(x.left, queue, lo, hi);
+        if (cmplo <= 0 && cmphi <= 0) queue.enqueue(x.key);
+        if (cmphi > 0) keys(x.right, queue, lo, hi);
     }
 }
