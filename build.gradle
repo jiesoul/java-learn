@@ -4,6 +4,11 @@ plugins {
     id 'war'
 }
 
+
+wrapper {
+    gradleVersion = '4.8'
+}
+
 group 'com.zhangyunjie'
 version '1.0-SNAPSHOT'
 
@@ -23,13 +28,10 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+//    useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
     }
 }
 
-wrapper {
-    gradleVersion = '4.8'
-}
 
