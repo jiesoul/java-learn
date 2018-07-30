@@ -21,3 +21,145 @@
 
 #### 使用内部类处理对象状态
 
+##  泛型
+
+### 泛型和虚拟机
+
+虚拟机没有泛型对象，所有的对象都是普通类。
+
+#### 类型擦除
+
+每当你定义一个泛型时，相应的原生类型会自动提供。类型变量被擦除并且被约束类型(或者没有约束类型使用 Object) 代替。
+
+替换时使用第一个约束替换。 
+
+```java
+public class Interval<T extends Comparable & Serializable> implements Serializable
+{
+private T lower;
+private T upper;
+. . .
+public Interval(T first, T second)
+{
+if (first.compareTo(second) <= 0) { lower = first; upper = second; }
+else { lower = second; upper = first; }
+}
+}
+```
+
+擦除后
+
+```java
+public class Interval implements Serializable
+{
+private Comparable lower;
+private Comparable upper;
+. . .
+public Interval(Comparable first, Comparable second) { . . . }
+}
+```
+
+#### 转换泛型表达式
+
+当你的程序调用方法时，编译器在返回类型被擦除时插入转换。
+
+#### 转换泛型方法
+
+泛型方法
+
+```java
+public static <T extends Comparable> T min(T[] a)
+```
+
+擦除后
+
+```java
+public static Comparable min(Comparable[] a)
+```
+
+总结：
+
+* 虚拟机中没有泛型，只有普通的类和方法
+* 所有类型参数被它们的约束替换
+* 桥接方法被综合成保持多态lf
+* 强制转换必须插入以保持类型安全
+
+#### 调用遗留代码
+
+### 约束和限制
+
+#### 类型参数不能使用原始类型
+
+因为类型擦除会使参数变成 Object, 只有 Double 之类的包装类可以，原始类型不可以.
+
+#### 运行时仅仅和原生类型工作
+
+#### 不能创建参数化类型数组
+
+#### 变参警告
+
+#### 不能实例化类型变量
+
+#### 不能构造泛型数组
+
+#### 类型变量在泛型类的静态上下文中不是可用的
+
+#### 不能抛出或捕获泛型类的实例
+
+#### 可以定义失败检查
+
+#### 擦除后当心冲突
+
+### 泛型的继承规则
+
+通常，Pair<S> 和 Pair<T> 没有任何关系，不管S 和 T 有怎样的关系。
+
+### 通配符类型
+
+#### 通配符概念
+
+类型参数可是不同的类型
+
+### 反射和泛型
+
+## 集合
+
+### Java 集合框架 
+
+#### Collection 接口
+
+这个接口有两个方法  
+
+```java
+public interface Collection<E>
+{
+boolean add(E element);
+Iterator<E> iterator();
+. . .
+}
+```
+
+#### 迭代器
+
+```java
+public interface Iterator<E>
+{
+E next();
+boolean hasNext();
+void remove();
+default void forEachRemaining(Consumer<? super E> action);
+}
+```
+
+
+
+#### Hash Set
+
+Java 中， hash tables 用链表数组表示 。每个list叫一个 bucket.
+
+> java8 中buckets 满了时它从链表变成平衡二叉树
+
+#### Tree Set
+
+相似于 hash set ，是已排序的。
+
