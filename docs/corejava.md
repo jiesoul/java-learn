@@ -21,7 +21,7 @@
 
 #### 使用内部类处理对象状态
 
-##  泛型
+## 泛型
 
 ### 泛型和虚拟机
 
@@ -31,7 +31,7 @@
 
 每当你定义一个泛型时，相应的原生类型会自动提供。类型变量被擦除并且被约束类型(或者没有约束类型使用 Object) 代替。
 
-替换时使用第一个约束替换。 
+替换时使用第一个约束替换。
 
 ```java
 public class Interval<T extends Comparable & Serializable> implements Serializable
@@ -127,11 +127,11 @@ public static Comparable min(Comparable[] a);
 
 ## 集合
 
-### Java 集合框架 
+### Java 集合框架
 
 #### Collection 接口
 
-这个接口有两个方法  
+这个接口有两个方法
 
 ```java
 public interface Collection<E>
