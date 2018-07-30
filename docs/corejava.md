@@ -38,7 +38,9 @@ public class Interval<T extends Comparable & Serializable> implements Serializab
 {
 private T lower;
 private T upper;
-. . .
+
+//....
+
 public Interval(T first, T second)
 {
 if (first.compareTo(second) <= 0) { lower = first; upper = second; }
@@ -54,8 +56,9 @@ public class Interval implements Serializable
 {
 private Comparable lower;
 private Comparable upper;
-. . .
-public Interval(Comparable first, Comparable second) { . . . }
+
+//...
+public Interval(Comparable first, Comparable second) { /.. ../ }
 }
 ```
 
@@ -68,13 +71,13 @@ public Interval(Comparable first, Comparable second) { . . . }
 泛型方法
 
 ```java
-public static <T extends Comparable> T min(T[] a)
+public static <T extends Comparable> T min(T[] a);
 ```
 
 擦除后
 
 ```java
-public static Comparable min(Comparable[] a)
+public static Comparable min(Comparable[] a);
 ```
 
 总结：
@@ -135,7 +138,7 @@ public interface Collection<E>
 {
 boolean add(E element);
 Iterator<E> iterator();
-. . .
+//...
 }
 ```
 
