@@ -166,3 +166,63 @@ Java 中， hash tables 用链表数组表示 。每个list叫一个 bucket.
 
 相似于 hash set ，是已排序的。
 
+## 并发
+
+同时做多个任务，每个任务叫做线程。每个进程有它的完整的变量集，线程是共享一些数据的。
+
+运行一个分开的线程步骤：
+
+1. 把代码放在一个实现了 Runnable 的接口的类的 run 方法中。这个接口很简单只有一个方法：
+
+   ```java
+   public interface Runnable {
+   void run();
+   }
+   ```
+
+   因为只有一个方法，所以可以使用 lambda 表达式 
+
+   ```java
+   Runnable r = () -> { task code };
+   ```
+
+2. 从 Runnable 构造一个 Thread 对象
+
+   ```java
+   Thread t = new Tread(r);
+   ```
+
+3. 启动线程
+
+   ```java
+   t.start();
+   ```
+
+当 run 方法返回(执行 return，执行方法体的最后一个语句，或者出现异常)时线程中断。
+
+interrupt 方法可以请求一个线程的终止。
+
+当 interrupt 方法被调用时，线程的中断状态 (interrupt status) 被设置。这是一个 boolean 类型的标记。
+
+要找出线程状态是否设置，首先调用方法 Thread.currentThread 得到当前线程，然后调用 isInterrupt 方法
+
+```java
+while (!Thread.currentThread().isInterrupted() && more work to do)
+{
+do more work
+}
+```
+
+尽管如此，如果线程被阻塞，它不会检查线程状态。这是 InterruptedException 要进来的地方。当 interrupt 方法调用在一个阻塞的(调用sleep 或 wait)线程上，阻塞调用被 InterruptedExcption 终止。
+
+线程有六个状态 ：New, Runnable, Blocked, Waiting, Timed Waiting, Terminated。使用 getStatus 得到状态 。
+
+* New Threads 使用 new 创建线程时，线程并没有运行，它在 New 状态，不会执行里面的代码。
+
+* Runnable Threads 调用 start 方法，线程进入 Runnable 状态。一个 Runnable 的线程可能不会真实运行，它需要操作系统给它时间去运行。
+
+* Blocked and Waiting Threads 当处理这两种状态，线程不工作。它不执行任何代码并且消费最小的资源。依赖上层的线程调度器重新激活它。
+
+* Terminated Theads 两个原因：run 方法正常退出时自然死亡，出现异常时不正常死亡。
+
+  每个线程都有一个优先级，默认继承创建它的线程的，使用 setPriority 方法增加或减少线程的优先级。
