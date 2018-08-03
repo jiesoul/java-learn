@@ -226,3 +226,89 @@ do more work
 * Terminated Theads 两个原因：run 方法正常退出时自然死亡，出现异常时不正常死亡。
 
   每个线程都有一个优先级，默认继承创建它的线程的，使用 setPriority 方法增加或减少线程的优先级。
+
+#### Monitor 监视器
+
+三个属性：
+
+* 是一个仅仅有一个私有域的类
+* 类的每个对象都有一个关联锁
+* 所有方法都被锁加锁
+* 锁有一系列关联条件
+
+java 中每个对象都有一个内置锁和内置条件。如果方法被用 synchronized 关键字申明，它就像一个监视器方法，条件变量通过调用 wait / notifAll / notify 处理。
+
+为了线程安全，一个 Java 对象和 一个监视器有三个不同：
+
+* 域不必是 private
+* 方法不必是 synchronized
+* 内置锁对客户端是可用的
+
+#### Volatile 域
+
+有时仅仅读写一两个实例域对同步的花费过多了。
+
+volatile 关键字提供了同步处理一个实例域的自由锁。如果你定义一个域为 volatile ，然后编译器和虚拟机变成域能被其它络同步更新的账。
+
+#### Final 域
+
+对于读取， final 域是可以共享处理的.操作map 不是线程安全的，多线程修改和读取时同样需要同步。
+
+#### Atomic
+
+ java.util.concurrent.atomic 包下的类在不用锁时可有效的用机器级指令保护其它操作的原子性。例如 AtomicInteger 有方法 incrementAndGet 和 	decrementAndGet 来原子性的增加或减少一个 Integer 值。
+
+如果你想要更复杂的更新，你需要 compareAndSet 方法。假如你想保持跟踪不同线程里观察到的最大的值，下面的代码不工作：
+
+```java
+public static AtomicLong largest = new AomicLong();
+// some thread
+largest.set(Math.max(largest.get(), observed)); // error--race condition
+```
+
+这个更新不是原子的，代替的在计算新值且在循环中使用 compareAndSet
+
+```java
+do {
+    oldValue = largest.get();
+    newValue = Math.max(oldValue, observed);
+} while (!lagrest.compareAndSet(oldValue, newValue));
+```
+
+JAVA SE 8 中不用使用循环格式，可以使用 lambda 表达式，
+
+```java
+largest.updateAndGet(x -> Math.max(x, observed));
+
+largest.accumlateAndGet(observed, Math::max);
+```
+
+accumulateAndGet 方法是一个二进制操作，被用来组合原子价和供给的参数。
+
+getAndUpdate 和 getAndAccumulate 会返回旧值。
+
+当你有一个非常大数量的线程thgj处理相同的原子的值，因为乐观更新需要太多的重审性能损失很大。Java SE 8 提供类 LongAdder 和 LongAccumul 解决这个问题。
+
+如果有预期更多，
+
+```java
+final LongAdder adder = new LongAdder();
+for (. . .)
+pool.submit(() -> {
+while (. . .) {
+. . .
+if (. . .) adder.increment();
+}
+});
+. . .
+long total = adder.sum());
+```
+
+```java
+LongAccumulator adder = new LongAccumulator(Long::sum, 0);
+// In some thread...
+adder.accumulate(value);
+```
+
+#### 死锁
+
