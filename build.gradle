@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+
     compile fileTree(dir: 'lib', include:['*.jar'])
     compile 'net.bytebuddy:byte-buddy-parent:1.8.13'
 
