@@ -211,11 +211,11 @@ javac 命令编译 java 文件到 class 文件，javap 可以输出 class 文件
 
 虚拟机汇编语言的格式
 
+```jvm
 <index> <opcode> [ <operand1> [<operand2> ]] [<comment>]
 
 <index> 是这个方法的JVM代码的字节数组的指令操作码索引。<opcode> 是指令的操作码的助记，0个或多个<operandN> 指令的操作对象，可选的<comment>注释放在行末。
 
-```
 8 bipush 100 //Push int constant 100
 ```
 
@@ -223,9 +223,10 @@ javac 命令编译 java 文件到 class 文件，javap 可以输出 class 文件
 
 JVM是面向栈的，大多数操作是从JVM当前栈帧得到1个或多个操作数或者把结果放入操作栈。新栈帧在方法调用时创建，它创建一个新的操作栈和局部变量集。看起来有很多操作栈一起或者嵌套，但是活动的只有当前的。
 
+````jvm
 0 iconst_0 //push int constant 0
 1 istore_1 //store into local variable 1 （i=0）
-
+````
 
 ### 算术
 
