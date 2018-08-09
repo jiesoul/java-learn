@@ -36,6 +36,6 @@ public class Example {
     }
 
     public static void main(String[] args) {
-        String[] a = StdIn.readStrings();
+        String[] a = StdIn.readAllStrings();
     }
 }
