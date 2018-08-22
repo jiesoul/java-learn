@@ -13,8 +13,6 @@ public class Allocation {
         byte[] allocation2 = new byte[3*_1MB];
         byte[] allocation3 = new byte[2*_1MB];
         byte[] allocation4 = new byte[4*_1MB];
-
-
     }
 
 }
