@@ -3,6 +3,10 @@ package jvm;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * VM args: -Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError
+ */
+
 public class HeapOOM {
     static class OOMObject {
 

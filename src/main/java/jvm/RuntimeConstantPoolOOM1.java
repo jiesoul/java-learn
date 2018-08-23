@@ -1,10 +1,8 @@
-/**
- * Vm args: -XX: PermSize=10M -XX:MaxPermSize=10M
- */
 package jvm;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Vm args: -XX:PermSize=10M -XX:MaxPermSize=10M
+ */
 
 public class RuntimeConstantPoolOOM1 {
     public static void main(String[] args) {

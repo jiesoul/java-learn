@@ -1,5 +1,8 @@
 package jvm;
 
+/**
+ * VM args: -Xss128k
+ */
 public class JavaVMStackSOF {
     private int stackLength = 1;
     public void stackLeak() {

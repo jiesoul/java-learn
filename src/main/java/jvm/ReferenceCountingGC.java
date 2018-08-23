@@ -1,5 +1,9 @@
 package jvm;
 
+/**
+ * VM args: -verbose:gc -XX:+PrintGCDetails
+ */
+
 public class ReferenceCountingGC {
 
     public Object instance = null;

@@ -2,10 +2,6 @@ package jvm;
 
 public class FinalizeEscapeGC {
 
-    /**
-     * VM参数
-     */
-
     public static FinalizeEscapeGC SAVE_HOKK = null;
     public void isAlive() {
         System.out.println("yes, i am still alive.");
