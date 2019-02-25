@@ -137,7 +137,7 @@ class 文件中其它命名为 <clinit> 并不是类或接口初始化方法，�
 * 一个简单的 object[] 形参
 * 有 ACC_VARARGS 和 ACC_NATIVE 标记设置
 
-jvm 使用特殊指令 invokevirtual 处理签名多态方法，为了在 java.lang.invoke.VarHandle 高效的处理方法句柄的调用或高效处理方法引用。
+com.jiesoul.jvm 使用特殊指令 invokevirtual 处理签名多态方法，为了在 java.lang.invoke.VarHandle 高效的处理方法句柄的调用或高效处理方法引用。
 
 方法句柄是动态强类型的并且直接执行引用到隐含的方法，构造器，域，或者相似的更低级的操作。java.lang.invoke.VarHandle 的实例是强类型的引用，引用一个或者多个变量，包含静态域，非静态域，数组元素，或一个离堆数据结构的组合。
 
@@ -214,7 +214,7 @@ javac 命令编译 java 文件到 class 文件，javap 可以输出 class 文件
 
 虚拟机汇编语言的格式
 
-```jvm
+```com.jiesoul.jvm
 <index> <opcode> [ <operand1> [<operand2> ]] [<comment>]
 
 <index> 是这个方法的JVM代码的字节数组的指令操作码索引。<opcode> 是指令的操作码的助记，0个或多个<operandN> 指令的操作对象，可选的<comment>注释放在行末。
@@ -226,7 +226,7 @@ javac 命令编译 java 文件到 class 文件，javap 可以输出 class 文件
 
 JVM是面向栈的，大多数操作是从JVM当前栈帧得到1个或多个操作数或者把结果放入操作栈。新栈帧在方法调用时创建，它创建一个新的操作栈和局部变量集。看起来有很多操作栈一起或者嵌套，但是活动的只有当前的。
 
-````jvm
+````com.jiesoul.jvm
 0 iconst_0 //push int constant 0
 1 istore_1 //store into local variable 1 （i=0）
 ````

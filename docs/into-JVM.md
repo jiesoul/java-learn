@@ -5,8 +5,8 @@
 
 
 ```java
-@OnMethod(clazz="jvm.BTraceTest", method="add", location=@Location(Kind.RETURN))
-    public static void func(@Self jvm.BTraceTest instance, int a, int b, @Return int result) {
+@OnMethod(clazz=com.jiesoul.jvm.BTraceTest", method="add", location=@Location(Kind.RETURN))
+    public static void func(@Self com.jiesoul.jvm.BTraceTest instance, int a, int b, @Return int result) {
         println("调用堆栈:");
         jstack();
         println(strcat("方法参数A:", str (a)));

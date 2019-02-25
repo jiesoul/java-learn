@@ -5,10 +5,10 @@ plugins {
 }
 
 wrapper {
-    gradleVersion = '4.8'
+    gradleVersion = '5.2.1'
 }
 
-group 'com.zhangyunjie'
+group 'com.jiesoul'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
