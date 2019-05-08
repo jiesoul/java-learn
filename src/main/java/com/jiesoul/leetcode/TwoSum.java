@@ -2,6 +2,7 @@ package com.jiesoul.leetcode;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created with IntelliJ IDEA. Description:
@@ -28,8 +29,8 @@ public class TwoSum {
   }
 
 
-  public int[] twosum1(int[] nums, int target) {
-    int[] numsre = new int[2];
+  public static int[] twosum1(int[] nums, int target) {
+    int numsre[] = new int[2];
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] > target) {
         return numsre;
@@ -43,5 +44,10 @@ public class TwoSum {
       }
     }
     return numsre;
+  }
+
+  public static void main(String[] args) {
+    int[] nums = {2, 7, 11, 15};
+    twosum1(nums, 9);
   }
 }

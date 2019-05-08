@@ -16,6 +16,8 @@ public class SubstringAndConcatenationOfAllWords {
     for (String w : words) {
 
     }
+
+    return null;
   }
 
 }

@@ -1,10 +1,5 @@
 package com.jiesoul.leetcode;
 
-
-import clojure.lang.Numbers;
-
-import java.util.List;
-
 public class DivideTwoIntegers {
 
     public static int divide1(int dividend, int divisor) {
